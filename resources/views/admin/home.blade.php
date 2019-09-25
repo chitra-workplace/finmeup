@@ -154,7 +154,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="javascript:void(0)" class="uppercase">View All Users</a>
+                  <a href="{{ url('admin/users') }}" class="uppercase">View All Users</a>
                 </div>
                 <!-- /.box-footer -->
               </div>
