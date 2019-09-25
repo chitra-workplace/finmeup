@@ -13,7 +13,7 @@
 */
 
 Route::get('/', function () {
-  return redirect()->route('admin.login');
+  return redirect()->route('login');
   return view('welcome');
 });
 
@@ -45,6 +45,10 @@ Route::group(['prefix' => 'admin'], function () {
 
       Route::get('/aboutus', 'Admin\CmsController@aboutus');
       Route::post('/aboutus', 'Admin\CmsController@aboutus_update');
+
+      Route::get("/changepassword","Admin\AdminController@changepassword");
+      Route::post("/changepassword","Admin\AdminController@updatePassword");
+      Route::resource("/profile","Admin\AdminController");
     });
 
 });
