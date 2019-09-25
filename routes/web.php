@@ -13,7 +13,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return redirect()->route('admin.login');
+  return view('welcome');
 });
 
 Auth::routes();
