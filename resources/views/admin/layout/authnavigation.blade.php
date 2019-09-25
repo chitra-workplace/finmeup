@@ -72,8 +72,8 @@
             <i class="fa fa-angle-double-right"></i> <span>Package</span>
           </a>
         </li>
-        <li class="">
-          <a href="#">
+        <li class="@if(@$active && $active=='Users')active @endif">
+          <a href="{{ url('admin/users') }}">
             <i class="fa fa-users"></i> <span>Users</span>
           </a>
         </li>

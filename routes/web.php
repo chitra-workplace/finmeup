@@ -49,6 +49,8 @@ Route::group(['prefix' => 'admin'], function () {
       Route::get("/changepassword","Admin\AdminController@changepassword");
       Route::post("/changepassword","Admin\AdminController@updatePassword");
       Route::resource("/profile","Admin\AdminController");
+
+      Route::get("/users","Admin\UserController@index");
     });
 
 });
