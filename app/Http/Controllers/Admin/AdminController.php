@@ -9,12 +9,13 @@ use App\Admin;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
-class ProfileController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
-        $data['active'] = 'profile';
+        $data['active'] = 'Profile';
         $data['sub_active'] = '';
         $data['sub_active1'] = '';
         return view("admin.profile", $data);
@@ -22,7 +23,7 @@ class ProfileController extends Controller
 
     public function changepassword()
     {
-        $data['active'] = 'changepassword';
+        $data['active'] = 'ChangePassword';
         $data['sub_active'] = '';
         $data['sub_active1'] = '';
         return view("admin.changepassword", $data);
@@ -41,6 +42,7 @@ class ProfileController extends Controller
 
         if($Validator->fails()){
           return redirect()->back()->withErrors($Validator)->withInput();
+         //   return redirect()->back()->with("error_message",$Validator->messages()->first());
         }
 
         $user = Auth::guard('admin')->user();
@@ -59,16 +61,6 @@ class ProfileController extends Controller
             return redirect()->back()->with('error_message','Invalid Old password!!.');
         }
 
-
-        // $Validator = Validator::make($request->all(),[
-        //   "password" =>"required|confirmed|min:6"
-        // ]);
-        // if($Validator->fails()){
-        //   return redirect()->back()->withErrors($Validator)->withInput();
-        // }
-
-        // Admin::where("id",Auth::guard('admin')->user()->id)->update(["password" => Hash::make($request->password)]);
-        // return redirect()->back()->with("message","Admin Changed Password successfully.");
     }
 
 
@@ -81,31 +73,25 @@ class ProfileController extends Controller
           if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
           }
-
-          if($request->hasFile('image')){
-
-              $file_arr = ['jpg','jpeg','png'];
-              $ext = $request->image->getClientOriginalExtension();
-              if(!in_array($ext, $file_arr)){
-                    $validator = Validator::make(['image'],[
-                      'image' => 'required'
-                    ],[
-                        'image.required' => "Please choose valid image."
-                    ]);
-                    if($validator->fails()){
-                      return redirect()->back()->withErrors($validator)->withInput();
-                    }            
-              }
-            
-              $mytime = Carbon::now();
-              $todate = $mytime->toDateTimeString();
-
-              $imagename = $request->image->getClientOriginalName();
-              $ext = $request->image->getClientOriginalExtension();
-              $imagename = strtotime($todate).'.'.$ext;
-              $request->image->storeAs('public/adminimage', $imagename);
-
-              Admin::where("id",Auth::guard('admin')->user()->id)->update(['name' => $request->name,'image' => $imagename]);
+            $file = $request->file('image');
+            if(@$file){
+	            $file_array = ['jpg','jpeg','png'];
+	            $filetype = $file->getClientOriginalExtension();
+	            if(!in_array($filetype, $file_array)){
+	            return redirect()->back()->with("error_message","Please upload valid image, which support this format - jpg, jpeg, png.");
+	            }
+	            $imagename = strtotime('now').'.'.$filetype;
+	            $destinationPath = 'storage/images/adminimage/';
+	            $image_path = $destinationPath.$imagename;
+	            $oldimage = Auth::guard('admin')->user()->image;
+	            
+	           	$existingimagepath = $destinationPath.$oldimage;
+	            if($file->move($destinationPath,$imagename)){
+	            	 if(File::exists($existingimagepath)) {
+			                File::delete($existingimagepath);
+			            }
+	            }
+             Admin::where("id",Auth::guard('admin')->user()->id)->update(['name' => $request->name,'image' => $imagename]);
           }else{
              Admin::where("id",Auth::guard('admin')->user()->id)->update(['name' => $request->name]);
           }

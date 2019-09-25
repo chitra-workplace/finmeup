@@ -104,12 +104,12 @@ class CmsController extends Controller
             return redirect()->back()->with("error_message","Please upload valid image, which support this format - jpg, jpeg, png.");
             }
 
-            $image_path = 'storage/about_us/'.$info->image1;
+            $image_path = 'storage/images/about_us/'.$info->image1;
             if(File::exists($image_path)) {
                 File::delete($image_path);
             }
             $imagename = strtotime('now').'.'.$filetype;
-            $destinationPath = 'storage/about_us/';
+            $destinationPath = 'storage/images/about_us/';
             $file->move($destinationPath,$imagename);
             $info->image1 = $imagename;
 

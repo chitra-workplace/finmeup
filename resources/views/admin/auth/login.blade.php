@@ -68,7 +68,7 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Finme</b>UP</a>
+    <a href="{{url('')}}"><b>Finme</b>UP</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

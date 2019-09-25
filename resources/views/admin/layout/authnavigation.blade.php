@@ -5,9 +5,15 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
+       
         <div class="pull-left image">
-          <img src="{{ asset('/public/ltetheme/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+          <?php $url = \URL::To('public/icon').'/user.png';
+          if(@Auth::guard('admin')->user()->image){
+            $url = \URL::To('storage/images/adminimage/').'/'.Auth::guard('admin')->user()->image;
+          } ?>
+          <img src="{{ $url }}" class="img-circle" alt="User Image">
         </div>
+
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -46,11 +52,7 @@
          
           </a>
         </li>
-        <li class="">
-          <a href="#">
-            <i class="fa fa-user"></i> <span>Profile</span>
-          </a>
-        </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Posts</span>
@@ -125,6 +127,16 @@
           </ul>
         </li> -->
         <!-- <li class="header">LABELS</li> -->
+        <li class="@if(@$active && $active=='Profile')active @endif">
+          <a href="{{ url('admin/profile') }}">
+            <i class="fa fa-user"></i> <span>Profile</span>
+          </a>
+        </li>
+        <li class="@if(@$active && $active=='ChangePassword')active @endif">
+          <a href="{{ url('admin/changepassword') }}">
+            <i class="fa fa-key"></i> <span>Change Password</span>
+          </a>
+        </li>
         <li>
           <a  href="{{ url('/admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <i class="fa fa-sign-out"></i> 

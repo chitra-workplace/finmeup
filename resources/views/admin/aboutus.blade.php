@@ -32,7 +32,7 @@
                           {{ csrf_field() }}
                           <div class="col-xs-12 col-sm-12 col-md-12">
                               <div class="form-group">
-                                  <label>Image (jpg,jpeg,png)</label><span class="astric"> *</span>
+                                  <label>Image <small>(jpg,jpeg,png)</small></label><span class="astric"> *</span>
                                   <input type="file" name="image1" class="form-control imgInp">
                                   <img src="{{ isset($data->image1) ? asset('/storage/about_us/'.$data->image1) :''}}" width="100px" id="blah">
                                </div>

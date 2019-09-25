@@ -22,9 +22,11 @@
     <link rel="stylesheet" href="{{ asset('/public/ltetheme/dist/css/skins/_all-skins.min.css') }}" rel="stylesheet">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.css" rel="stylesheet">
     <?php } ?>
+    <link href="{{ asset('/public/css/admin.css') }}" rel="stylesheet">
       <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <script src="{{ asset('/public/ltetheme/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- <script src="{{ asset('/public/ltetheme/bower_components/jquery/dist/jquery.min.js') }}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -84,8 +86,9 @@
     <script src="{{ asset('/public/ltetheme/dist/js/demo.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.js"></script>
     <script src="{{ asset('/public/js/pages/aboutus.js') }}"></script>
-    <script src="{{ asset('public/assets/js/AdminLTE/app.js') }}" type="text/javascript"></script>
+   <!--  <script src="{{ asset('public/assets/js/AdminLTE/app.js') }}" type="text/javascript"></script> -->
     <?php } ?>
     <!-- default js   <script src="{{ asset('/public/js/app.js') }}"></script> -->
+    @yield('myjsfile')
 </body>
 </html>
