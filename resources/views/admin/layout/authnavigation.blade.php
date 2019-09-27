@@ -53,7 +53,7 @@
           </a>
         </li>
 
-        <li class="treeview">
+        <li class="@if(@$active && $active=='Post')active menu-open @endif treeview ">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Posts</span>
             <span class="pull-right-container">
@@ -61,7 +61,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('admin/quiz') }}"><i class="fa fa-circle-o"></i> Quiz</a></li>
+            <li class="@if(@$sub_active && $sub_active=='Quiz')active @endif">
+              <a href="{{ url('admin/quiz') }}"><i class="fa fa-circle-o"></i> Quiz</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Stock Picks</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Videos & Articles</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Insights & Editors notes</a></li>

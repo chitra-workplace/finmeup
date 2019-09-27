@@ -18,8 +18,8 @@ class QuizController extends Controller
 {
     public function index()
     {
-        $data['active'] = 'Quiz';
-        $data['sub_active'] = '';
+        $data['active'] = 'Post';
+        $data['sub_active'] = 'Quiz';
         $data['sub_active1'] = '';
         $data['quiz'] = Quizs::All();
         return view("admin.quiz", $data);
@@ -27,16 +27,16 @@ class QuizController extends Controller
 
     public function postquiz(Request $request){
     	
-    	$record['active'] = 'Quiz';
-        $record['sub_active'] = '';
+    	$record['active'] = 'Post';
+        $record['sub_active'] = 'Quiz';
         $record['sub_active1'] = '';
     	return view("admin.postquiz",$record);
     }
 
     public function create_quiz(Request $request){
     	
-    	$record['active'] = 'Quiz';
-        $record['sub_active'] = '';
+    	$record['active'] = 'Post';
+        $record['sub_active'] = 'Quiz';
         $record['sub_active1'] = '';
 
         $Validator = Validator::make($request->all(),[
