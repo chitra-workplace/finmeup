@@ -61,8 +61,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quiz</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Stock Pics</a></li>
+            <li><a href="{{ url('admin/quiz') }}"><i class="fa fa-circle-o"></i> Quiz</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Stock Picks</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Videos & Articles</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Insights & Editors notes</a></li>
           </ul>
@@ -129,7 +129,7 @@
         <!-- <li class="header">LABELS</li> -->
         <li class="@if(@$active && $active=='Profile')active @endif">
           <a href="{{ url('admin/profile') }}">
-            <i class="fa fa-user"></i> <span>Profile</span>
+            <i class="fa fa-user"></i> <span>My Profile</span>
           </a>
         </li>
         <li class="@if(@$active && $active=='ChangePassword')active @endif">

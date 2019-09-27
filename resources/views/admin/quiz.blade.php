@@ -7,11 +7,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       Users
+       Quiz
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url('admin/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Users </li>
+        <li class="active">Quiz </li>
       </ol>
     </section>
    <!-- Main content -->
@@ -22,7 +22,8 @@
           
             <div class="box">
                     <div class="box-header with-border">
-                      <h3 class="box-title">User List</h3>
+                      <h3 class="box-title">Quiz List</h3>
+                      <a class="btn btn-xs btn-primary pull-right" href="{{url('admin/postquiz')}}">Post New Quiz</a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -30,45 +31,45 @@
                       <table class="table table-bordered">
                         <tr>
                           <th style="width: 10px">#</th>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Contact No.</th>
+                          <th>Quiz No</th>
+                          <th>Quiz Title</th>
+                          <th>No of played users</th>
                           <th>Status</th>
-                          <th>Registered At</th>
+                          <th>Posted At</th>
                           <th>Action</th>
                         </tr>
-                          <?php if(count(@$users) > 0){
-                            foreach ($users as $key => $value) { 
+                          <?php if(count(@$quiz) > 0){
+                            foreach ($quiz as $key => $value) { 
                              $srno =  $key+1; ?>
                                 <tr>
                                   <td>{{ $srno }}</td>
-                                  <td>{{ ucfirst(@$value->name) }}</td>
-                                  <td>{{ @$value->email }}</td>
-                                  <td>{{ @$value->contact_no }}</td>
+                                  <td>{{ ucfirst(@$value->quiz_no) }}</td>
+                                  <td>{{ @$value->quiz_title }}</td>
+                                  <td>0</td>
                                   <td>
-                                    <!-- <div class="progress progress-xs">
-                                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div> -->
                                     <?php 
                                     $status  = "Active"; $class = "bg-green";
-                                    if(@$value->status == 2){
+                                    if(@$value->quiz_status == 2){
                                       $status  = "Inactive"; $class = "bg-red";
                                     } ?>
                                     <span class="badge {{$class}}">{{ $status }}</span>
                                   </td>
                                   <td>{{ date('j M Y',strtotime(@$value->created_at)) }}</td>
                                   <td>
-                                    <a class="btn btn-xs bg-purple">
-                                      Submitted Quiz
+                                 <!--    <a class="btn btn-xs bg-purple">
+                                      View
+                                    </a> -->
+                                    <a href="{{url('admin/edit_quiz/'.@$value->id)}}" class="btn btn-xs bg-olive">
+                                      Edit
                                     </a>
-                                     <a class="btn btn-xs bg-olive">
-                                      Favourite Post
+                                    <a href="{{url('admin/delete_quiz/'.@$value->id)}}" class="btn btn-xs bg-maroon" onclick="return confirm('Are your sure want to delete?')">
+                                      Delete
                                     </a>
                                   </td>
                                 </tr>
                           <?php  }
                           } else { ?> 
-                            <tr><td colspan="8"> Record Not Found...! </td></tr>
+                            <tr><td colspan="8"> <p class="text-center"> Record Not Found...! </p> </td></tr>
                           <?php } ?>
                           
                        

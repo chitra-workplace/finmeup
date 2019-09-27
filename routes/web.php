@@ -51,6 +51,13 @@ Route::group(['prefix' => 'admin'], function () {
       Route::resource("/profile","Admin\AdminController");
 
       Route::get("/users","Admin\UserController@index");
+
+      Route::get("/quiz","Admin\QuizController@index");
+      Route::get('/postquiz', 'Admin\QuizController@postquiz');
+      Route::post("/create_quiz","Admin\QuizController@create_quiz");
+      Route::get('/delete_quiz/{id}', 'Admin\QuizController@delete_quiz');
+
+
     });
 
 });

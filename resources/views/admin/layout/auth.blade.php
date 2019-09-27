@@ -86,6 +86,13 @@
     <script src="{{ asset('/public/ltetheme/dist/js/demo.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.4/summernote.js"></script>
     <script src="{{ asset('/public/js/pages/aboutus.js') }}"></script>
+    <!-- refer from http://www.formvalidator.net/ -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script type="text/javascript">
+         $.validate({
+                lang: 'en'
+              });
+    </script>
    <!--  <script src="{{ asset('public/assets/js/AdminLTE/app.js') }}" type="text/javascript"></script> -->
     <?php } ?>
     <!-- default js   <script src="{{ asset('/public/js/app.js') }}"></script> -->
