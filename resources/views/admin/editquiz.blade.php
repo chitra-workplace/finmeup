@@ -50,7 +50,7 @@
                                           <div class="form-group">
                                               <label for="question">Question <span class="no"> {{$no}} </span></label>
 
-                                              <a href="javascript:void(0)" class="pull-right remove text-red m-l-5" data-id="{{ @$value->id }}" onclick="remove(this)"> - Remove </a>
+                                              <a href="javascript:void(0)" class="pull-right remove text-red m-l-5 d-none" data-id="{{ @$value->id }}" onclick="remove(this)"> - Remove </a>
 
                                               <a href="javascript:void(0)" class="pull-right add_more d-none" onclick="add_more(this)"> + Add More</a>
 
@@ -154,7 +154,6 @@
         divClone.insertAfter("div.quiz_box:last");
         //$('.quiz_box:last').clone().insertAfter("div.quiz_box:last");
         ths.parent().parent().find('.remove').show();
-      //  ths.parent().parent().find('.remove').attr('data-id','');
         ths.parent().parent().find('.add_more').hide();
       }
       function remove_init(th){
