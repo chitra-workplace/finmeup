@@ -40,7 +40,7 @@
                                   </div>
                                   <?php 
                                   $quiz_qa = @$quiz->quiz_qus_ans;
-                                  if(!empty(@$quiz_qa)){
+                                  if(count(@$quiz_qa) > 0 ){
 
                                     foreach ($quiz_qa as $key => $value) { 
                                       $no = $key + 1;
@@ -50,7 +50,7 @@
                                           <div class="form-group">
                                               <label for="question">Question <span class="no"> {{$no}} </span></label>
 
-                                              <a href="javascript:void(0)" class="pull-right remove text-red m-l-5 d-none" data-id="{{ @$value->id }}" onclick="remove(this)"> - Remove </a>
+                                              <a href="javascript:void(0)" class="pull-right remove text-red m-l-5 " data-id="{{ @$value->id }}" onclick="remove(this)"> - Remove </a>
 
                                               <a href="javascript:void(0)" class="pull-right add_more d-none" onclick="add_more(this)"> + Add More</a>
 
@@ -109,7 +109,70 @@
                                           </div>
                                       </div> <!-- /.end of quiz box div -->
                                   <?php  }
-                                  }?>
+                                  } else { ?>
+                                     <div class="quiz_box col-xs-12" id="quizbox_1">
+                                      <div class="form-group">
+                                          <label for="question">Question <span class="no"> 1 </span></label>
+                                          <a href="javascript:void(0)" class="pull-right remove text-red m-l-5 d-none" onclick="remove(this)"> - Remove </a>
+
+                                          <a href="javascript:void(0)" class="pull-right add_more" onclick="add_more(this)"> + Add More</a>
+
+                                          <textarea name="question[]" class="form-control" placeholder="Enter Question" data-validation="required"></textarea>
+                                          @if($errors->has('question.*'))
+                                          <span class="has-errors text-red">{{ $errors->first('question.*') }}</span>
+                                          @endif
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label for="option_1">Option 1</label>
+                                          <input type="text" name="option_1[]" class="form-control" placeholder="Enter First Option" data-validation="required">
+                                          @if($errors->has('option_1.*'))
+                                          <span class="has-errors text-red">{{ $errors->first('option_1.*') }}</span>
+                                          @endif
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="option_2">Option 2</label>
+                                          <input type="text" name="option_2[]" class="form-control" placeholder="Enter Second Option" data-validation="required">
+                                          @if($errors->has('option_2.*'))
+                                          <span class="has-errors text-red">{{ $errors->first('option_2.*') }}</span>
+                                          @endif
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="option_3">Option 3</label>
+                                          <input type="text" name="option_3[]" class="form-control" placeholder="Enter Third Option" data-validation="required">
+                                          @if($errors->has('option_3.*'))
+                                          <span class="has-errors text-red">{{ $errors->first('option_3.*') }}</span>
+                                          @endif
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="option_4">Option 4</label>
+                                          <input type="text" name="option_4[]" class="form-control" placeholder="Enter Fourth Option" data-validation="required">
+                                          @if($errors->has('option_4.*'))
+                                          <span class="has-errors text-red">{{ $errors->first('option_4.*') }}</span>
+                                          @endif
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="right_option">Right Option</label>
+                                          <select name="right_option[]" class="form-control" data-validation="required">
+                                              <option value=""> -- Select Right Option -- </option>
+                                              <option value="1"> Option 1</option>
+                                              <option value="2"> Option 2</option>
+                                              <option value="3"> Option 3</option>
+                                              <option value="4"> Option 4</option>
+                                          </select>
+                                          @if($errors->has('right_option.*'))
+                                          <span class="has-errors text-red">{{ $errors->first('right_option.*') }}</span>
+                                          @endif
+                                      </div>
+                                      <div class="form-group">
+                                         <label for="right_opt_reason">Reason for right option</label> 
+                                          <textarea name="right_opt_reason[]" class="form-control" placeholder="Enter reason for right option" data-validation="required"></textarea>
+                                          @if($errors->has('right_opt_reason.*'))
+                                          <span class="has-errors text-red">{{ $errors->first('right_opt_reason.*') }}</span>
+                                          @endif
+                                      </div>
+                                  </div> <!-- /.end of quiz box div -->
+                                 <?php } ?>
                                 
                               </div><!-- /.box-body -->
 
@@ -134,6 +197,7 @@
       
       $(document).ready(function() {
         $('.quiz_box:last').find('.add_more').show();
+        // $('.quiz_box:last').find('.remove').hide();
       });
       function add_more(th){
         var ths = $(th);
