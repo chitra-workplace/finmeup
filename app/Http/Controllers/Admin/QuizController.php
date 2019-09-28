@@ -198,10 +198,11 @@ class QuizController extends Controller
  	 *******************************************/
  	public function delete_quiz($id){
 
- 		if(DB::table('quiz_question_answers')->where('quiz_id','=',$id)->delete()){
- 			DB::table('quizs')->where('id','=',$id)->delete();
- 		}
-		
+ 		// if(DB::table('quiz_question_answers')->where('quiz_id','=',$id)->delete()){
+ 		// 	DB::table('quizs')->where('id','=',$id)->delete();
+ 		// }
+ 		DB::table('quiz_question_answers')->where('quiz_id','=',$id)->delete();
+		DB::table('quizs')->where('id','=',$id)->delete();
  		return redirect()->back()->with("message","Quiz has been deleted successfully.");
  	}
  	/*******************************************
