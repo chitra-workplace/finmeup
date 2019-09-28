@@ -21,7 +21,7 @@ class QuizController extends Controller
         $data['active'] = 'Post';
         $data['sub_active'] = 'Quiz';
         $data['sub_active1'] = '';
-        $data['quiz'] = Quizs::With('quiz_qus_ans')->get();
+        $data['quiz'] = Quizs::With('quiz_qus_ans')->latest()->get();
         return view("admin.quiz", $data);
     }
      /*******************************************
