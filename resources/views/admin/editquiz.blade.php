@@ -150,48 +150,65 @@
         divClone.find('select').each(function(index, item) {
              $(item).val('');
         });
+        divClone.find('.remove').attr('data-id','');
         divClone.insertAfter("div.quiz_box:last");
         //$('.quiz_box:last').clone().insertAfter("div.quiz_box:last");
         ths.parent().parent().find('.remove').show();
+      //  ths.parent().parent().find('.remove').attr('data-id','');
         ths.parent().parent().find('.add_more').hide();
       }
-
+      function remove_init(th){
+        var ths = $(th);
+        ths.parent().parent('div.quiz_box').remove();
+        $(".quiz_box").get().forEach(function(entry, index, array) {
+            // Here, array.length is the total number of items
+            var ind = index+1;
+            var newid = 'quizbox_'+ind;
+            $(entry).find('.no').html(ind);
+            $(entry).attr("id", newid);
+        });
+      }
       function remove(th){
         var ths = $(th);
         var r = confirm("Are you sure, you want to remove this Question?");
         if (r == true) {
           var qid = ths.attr('data-id');
-          $.ajax({
-              type:'GET',
-              url: '{{url("admin/remove_quiz_qus/")}}'+'/'+qid,
-              dataType:"json",
-              data:{
-                id:qid
-              },
-              beforeSend: function() {
-                  ths.html("loading...");
-                  ths.attr('disabled','disabled');
-              },
-              success:function (response) {
-                if(response.code == 200){
-                      ths.html("-Remove");
-                      ths.removeAttr('disabled');
-                      ths.parent().parent('div.quiz_box').remove();
-                      $(".quiz_box").get().forEach(function(entry, index, array) {
-                          var ind = index+1;
-                          var newid = 'quizbox_'+ind;
-                          $(entry).find('.no').html(ind);
-                          $(entry).attr("id", newid);
-                      });
-                }else{
-                    alert('There is some issue');
+          if(qid){
+              $.ajax({
+                type:'GET',
+                url: '{{url("admin/remove_quiz_qus/")}}'+'/'+qid,
+                dataType:"json",
+                data:{
+                  id:qid
+                },
+                beforeSend: function() {
+                    ths.html("loading...");
+                    ths.attr('disabled','disabled');
+                },
+                success:function (response) {
+                  if(response.code == 200){
+                        ths.html("-Remove");
+                        ths.removeAttr('disabled');
+                        ths.parent().parent('div.quiz_box').remove();
+                        $(".quiz_box").get().forEach(function(entry, index, array) {
+                            var ind = index+1;
+                            var newid = 'quizbox_'+ind;
+                            $(entry).find('.no').html(ind);
+                            $(entry).attr("id", newid);
+                        });
+                  }else{
+                      alert('There is some issue');
+                  }
+              
+                },
+                error: function(e) { // if error occured
+                    console.log(e);
                 }
-            
-              },
-              error: function(e) { // if error occured
-                  console.log(e);
-              }
-          });
+            });
+          }else{
+              remove_init(th);
+          }
+          
         }
       }
   </script>
