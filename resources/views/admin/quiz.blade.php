@@ -33,6 +33,7 @@
                           <th style="width: 10px">#</th>
                           <th>Quiz No</th>
                           <th>Quiz Title</th>
+                          <th>No of Qus.</th>
                           <th>No of played users</th>
                           <th>Status</th>
                           <th>Posted At</th>
@@ -45,14 +46,25 @@
                                   <td>{{ $srno }}</td>
                                   <td>{{ ucfirst(@$value->quiz_no) }}</td>
                                   <td>{{ @$value->quiz_title }}</td>
+                                  <td>{{ count(@$value->quiz_qus_ans) }}</td>
                                   <td>0</td>
                                   <td>
                                     <?php 
-                                    $status  = "Active"; $class = "bg-green";
+                                    $status  = "Active"; $class = "btn-success";
+                                    $ostatus = "Inactive"; $stval = 2;
                                     if(@$value->quiz_status == 2){
-                                      $status  = "Inactive"; $class = "bg-red";
+                                      $status  = "Inactive"; $class = "btn-danger"; $ostatus = "Active"; $stval = 1;
                                     } ?>
-                                    <span class="badge {{$class}}">{{ $status }}</span>
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-xs {{$class}}  btn-flat">{{$status}}</button>
+                                      <button type="button" class="btn btn-xs {{$class}}  btn-flat dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                      </button>
+                                      <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{url('admin/changes_quiz_status').'/'.@$value->id.'/'.$stval}}">{{ $ostatus }}</a></li>
+                                      </ul>
+                                    </div>
                                   </td>
                                   <td>{{ date('j M Y',strtotime(@$value->created_at)) }}</td>
                                   <td>

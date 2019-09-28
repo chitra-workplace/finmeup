@@ -56,8 +56,12 @@ Route::group(['prefix' => 'admin'], function () {
       Route::get('/postquiz', 'Admin\QuizController@postquiz');
       Route::post("/create_quiz","Admin\QuizController@create_quiz");
       Route::get('/delete_quiz/{id}', 'Admin\QuizController@delete_quiz');
-
-
+      Route::get('/edit_quiz/{id}', 'Admin\QuizController@edit_quiz');
+      Route::post('/update_quiz', 'Admin\QuizController@update_quiz');
+      Route::get('/remove_quiz_qus/{id}', 'Admin\QuizController@remove_quiz_qus');
+      Route::get('/changes_quiz_status/{id}/{status}', 'Admin\QuizController@changes_quiz_status');
+      
+      
     });
 
 });
