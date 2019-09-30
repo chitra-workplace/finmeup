@@ -86,7 +86,7 @@
                                 </tr>
                           <?php  }
                           } else { ?> 
-                            <tr><td colspan="9"> <p class="text-center"> Record Not Found...! </p> </td></tr>
+                            <tr><td colspan="12"> <p class="text-center"> Record Not Found...! </p> </td></tr>
                           <?php } ?>
                           
                        
