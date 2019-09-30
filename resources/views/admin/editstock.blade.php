@@ -116,7 +116,7 @@
                                       </div>
                                       <div class="form-group col-sm-12">
                                           <label for="listed_in">Where it’s listed</label>
-                                          <input type="text" name="listed_in" class="form-control" placeholder="Enter listed in" data-validation="required" value="{{$stock->target_price}}">
+                                          <input type="text" name="listed_in" class="form-control" placeholder="Enter listed in" data-validation="required" value="{{$stock->listed_in}}">
                                           @if($errors->has('listed_in'))
                                           <span class="has-errors text-red">{{ $errors->first('listed_in') }}</span>
                                           @endif
