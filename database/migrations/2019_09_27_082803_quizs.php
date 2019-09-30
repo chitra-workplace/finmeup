@@ -20,8 +20,7 @@ class Quizs extends Migration
             $table->integer('quiz_no');
             $table->integer('quiz_posted_by');
             $table->boolean('quiz_status')->default(1)->comment('1 for  active, 2 for inactive');
-            $table->dateTime('quiz_created_at')->nullable();
-            $table->dateTime('quiz_updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

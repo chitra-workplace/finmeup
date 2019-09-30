@@ -61,7 +61,15 @@ Route::group(['prefix' => 'admin'], function () {
       Route::get('/remove_quiz_qus/{id}', 'Admin\QuizController@remove_quiz_qus');
       Route::get('/changes_quiz_status/{id}/{status}', 'Admin\QuizController@changes_quiz_status');
       
+      Route::get("/stockpicks","Admin\StockController@index");
+      Route::get("/poststock","Admin\StockController@poststock");
+      Route::post("/create_stock","Admin\StockController@create_stock");
+      Route::get('/edit_stock/{id}', 'Admin\StockController@edit_stock');
+      Route::get('/delete_stock/{id}', 'Admin\StockController@delete_stock');
+      Route::post('/update_stock', 'Admin\StockController@update_stock');
+      Route::get('/change_stock_status/{id}/{status}', 'Admin\StockController@change_stock_status');
       
+
     });
 
 });
