@@ -64,7 +64,7 @@
             <li class="@if(@$sub_active && $sub_active=='Quiz')active @endif">
               <a href="{{ url('admin/quiz') }}"><i class="fa fa-circle-o"></i> Quiz</a></li>
             <li class="@if(@$sub_active && $sub_active=='Stock')active @endif">
-              <a href="{{ url('admin/stockpicks') }}"><i class="fa fa-circle-o"></i> Stock Picks</a>
+              <a href="{{ url('admin/stockpicks') }}"><i class="fa fa-circle-o"></i> Weekly Stock Picks</a>
             </li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Videos & Articles</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Insights & Editors notes</a></li>
